@@ -795,48 +795,7 @@
         <h2>Werk & Projecten</h2>
         <p>Van precisie-instrumenten tot CanSat competities</p>
     </div>
-    <div class="bento">
-        <div class="bento-item b-feature scale-in" onclick="openLightbox(this)">
-            <img src="images/groep-cnc.jpg" alt="Groepsfoto bij CNC machines" loading="lazy">
-            <div class="caption">Met medestudenten bij de CNC machines</div>
-        </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
-            <img src="images/precisie-instrument.jpg" alt="Precisie-instrument" loading="lazy">
-            <div class="caption">Precisie-instrument</div>
-        </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
-            <img src="images/lego-blok.jpg" alt="Aluminium LEGO blok" loading="lazy">
-            <div class="caption">Aluminium LEGO blok</div>
-        </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
-            <img src="images/gefreesd-blok.jpg" alt="CNC gefreesd werkstuk" loading="lazy">
-            <div class="caption">CNC gefreesd werkstuk</div>
-        </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
-            <img src="images/assemblage.jpg" alt="CanSat assemblage" loading="lazy">
-            <div class="caption">CanSat assemblage</div>
-        </div>
-        <div class="bento-item b-wide scale-in" onclick="openLightbox(this)">
-            <img src="images/instrument-behuizing.jpg" alt="CanSat in behuizing" loading="lazy">
-            <div class="caption">CanSat in behuizing</div>
-        </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
-            <img src="images/open-dag.jpg" alt="Open dag LiS" loading="lazy">
-            <div class="caption">Open dag LiS</div>
-        </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
-            <img src="images/reactor-groep.jpg" alt="Bezoek kernreactor" loading="lazy">
-            <div class="caption">Bezoek aan de kernreactor</div>
-        </div>
-        <div class="bento-item b-wide scale-in" onclick="openLightbox(this)">
-            <img src="images/brug-uitzicht.jpg" alt="Perspectief fotografie" loading="lazy">
-            <div class="caption">Fotografie — perspectief</div>
-        </div>
-        <div class="bento-item b-wide scale-in" onclick="openLightbox(this)">
-            <img src="images/bospad.jpg" alt="Fotografie" loading="lazy">
-            <div class="caption">Fotografie — natuur</div>
-        </div>
-    </div>
+    <div class="bento" id="bentoGrid"></div>
 </section>
 </div>
 
@@ -1075,6 +1034,40 @@
 <footer>&copy; 2026 Boris Jan Vollebregt — Den Haag</footer>
 
 <script>
+    // =============================================
+    // FOTO'S BEHEREN — Voeg hier nieuwe foto's toe!
+    // =============================================
+    // Zet je foto in de "images/" map en voeg een regel toe:
+    //   { src: "bestandsnaam.jpg", caption: "Beschrijving" }
+    //
+    const fotos = [
+        { src: "groep-cnc.jpg",           caption: "Met medestudenten bij de CNC machines" },
+        { src: "precisie-instrument.jpg",  caption: "Precisie-instrument" },
+        { src: "lego-blok.jpg",            caption: "Aluminium LEGO blok" },
+        { src: "gefreesd-blok.jpg",        caption: "CNC gefreesd werkstuk" },
+        { src: "assemblage.jpg",           caption: "CanSat assemblage" },
+        { src: "instrument-behuizing.jpg", caption: "CanSat in behuizing" },
+        { src: "open-dag.jpg",             caption: "Open dag LiS" },
+        { src: "reactor-groep.jpg",        caption: "Bezoek aan de kernreactor" },
+        { src: "brug-uitzicht.jpg",        caption: "Fotografie — perspectief" },
+        { src: "bospad.jpg",               caption: "Fotografie — natuur" },
+    ];
+
+    // Bouw de bento-grid automatisch
+    (function buildBentoGrid() {
+        const grid = document.getElementById('bentoGrid');
+        // Herhalend patroon: feature(2x2), normaal, normaal, normaal, normaal, breed(2x1), normaal, normaal, breed(2x1), breed(2x1)
+        const pattern = ['b-feature','','','','','b-wide','','','b-wide','b-wide'];
+        fotos.forEach((foto, i) => {
+            const cls = pattern[i % pattern.length];
+            const div = document.createElement('div');
+            div.className = `bento-item ${cls} scale-in`.trim();
+            div.onclick = function() { openLightbox(this); };
+            div.innerHTML = `<img src="images/${foto.src}" alt="${foto.caption}" loading="lazy"><div class="caption">${foto.caption}</div>`;
+            grid.appendChild(div);
+        });
+    })();
+
     // Intersection Observer for animations
     const obs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
