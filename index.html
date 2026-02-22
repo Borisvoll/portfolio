@@ -102,6 +102,23 @@
         }
         .nav-links a:hover { color: var(--text); }
 
+        /* === LANGUAGE TOGGLE === */
+        .lang-toggle {
+            display: inline-flex; align-items: center;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 980px; overflow: hidden; font-size: 0.72em;
+            font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+            cursor: pointer;
+        }
+        .lang-toggle span {
+            padding: 6px 12px; transition: all 0.3s; color: var(--text-dim);
+            font-family: 'DIN 1451', 'Share Tech Mono', 'Inter', sans-serif;
+        }
+        .lang-toggle span.active {
+            background: var(--gradient); color: #000;
+        }
+        body.light-mode .lang-toggle { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); }
+
         /* === BASKET BUTTON (nav) === */
         .basket-btn {
             display: inline-flex; align-items: center; gap: 6px;
@@ -811,17 +828,23 @@
     <div class="nav-inner">
         <span class="logo">BJV</span>
         <ul class="nav-links">
-            <li><a href="#projecten">Projecten</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#ervaring">Ervaring</a></li>
-            <li><a href="#opleiding">Opleiding</a></li>
-            <li><a href="#certificaten">Certificaten</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#projecten" data-i18n="nav.projecten">Projecten</a></li>
+            <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+            <li><a href="#ervaring" data-i18n="nav.ervaring">Ervaring</a></li>
+            <li><a href="#opleiding" data-i18n="nav.opleiding">Opleiding</a></li>
+            <li><a href="#certificaten" data-i18n="nav.certificaten">Certificaten</a></li>
+            <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
-        <button class="basket-btn" onclick="document.getElementById('basketOverlay').classList.add('active'); document.body.style.overflow='hidden';">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-            Mand
-        </button>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <div class="lang-toggle" id="langToggle">
+                <span class="active" data-lang="nl">NL</span>
+                <span data-lang="en">EN</span>
+            </div>
+            <button class="basket-btn" onclick="document.getElementById('basketOverlay').classList.add('active'); document.body.style.overflow='hidden';">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                Mand
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -836,20 +859,20 @@
         <img src="images/portrait.jpg" alt="Boris Jan Vollebregt" class="portrait">
     </div>
     <div class="reveal reveal-d1">
-        <span class="badge"><span class="dot"></span> Beschikbaar voor stage & opdrachten</span>
+        <span class="badge"><span class="dot"></span> <span data-i18n="hero.badge">Beschikbaar voor stage & opdrachten</span></span>
     </div>
     <div class="name-row reveal reveal-d2">
         <img src="images/bouwblok.png" alt="" class="bouwblok" aria-hidden="true">
         <h1>Boris Jan<br>Vollebregt</h1>
         <img src="images/bouwblok.png" alt="" class="bouwblok" aria-hidden="true" style="transform: scaleX(-1);">
     </div>
-    <p class="subtitle reveal reveal-d3">Student Research Instrumentmaker</p>
-    <p class="bio reveal reveal-d4">
+    <p class="subtitle reveal reveal-d3" data-i18n="hero.subtitle">Student Research Instrumentmaker</p>
+    <p class="bio reveal reveal-d4" data-i18n="hero.bio">
         Gemotiveerde student aan de Leidse instrumentmakers School met een passie voor precisietechniek en innovatie. Ervaring in CAD/CAM, verspaning en mechatronica.
     </p>
     <div class="cta-row reveal reveal-d5">
-        <a href="mailto:borisvoll@hotmail.com" class="btn btn-primary">Neem contact op</a>
-        <a href="https://www.linkedin.com/in/boris-jan-vollebregt-955b98111/" target="_blank" class="btn btn-ghost">LinkedIn bekijken</a>
+        <a href="mailto:borisvoll@hotmail.com" class="btn btn-primary" data-i18n="hero.cta1">Neem contact op</a>
+        <a href="https://www.linkedin.com/in/boris-jan-vollebregt-955b98111/" target="_blank" class="btn btn-ghost" data-i18n="hero.cta2">LinkedIn bekijken</a>
     </div>
 </header>
 
@@ -857,9 +880,9 @@
 <div class="section-bg">
 <section class="section" id="projecten">
     <div class="section-header reveal">
-        <p class="eyebrow">Portfolio</p>
-        <h2>Werk & Projecten</h2>
-        <p>Van precisie-instrumenten tot CanSat competities</p>
+        <p class="eyebrow" data-i18n="proj.eye">Portfolio</p>
+        <h2 data-i18n="proj.h2">Werk & Projecten</h2>
+        <p data-i18n="proj.sub">Van precisie-instrumenten tot CanSat competities</p>
     </div>
     <div class="bento" id="bentoGrid"></div>
 </section>
@@ -874,40 +897,40 @@
 <!-- SKILLS -->
 <section class="section" id="skills">
     <div class="section-header reveal">
-        <p class="eyebrow">Expertise</p>
-        <h2>Vaardigheden</h2>
-        <p>De tools en technieken die ik beheers</p>
+        <p class="eyebrow" data-i18n="skills.eye">Expertise</p>
+        <h2 data-i18n="skills.h2">Vaardigheden</h2>
+        <p data-i18n="skills.sub">De tools en technieken die ik beheers</p>
     </div>
     <div class="skills-bento">
         <div class="skill-card reveal">
             <span class="icon">&#9881;</span>
             <h3>CAD/CAM</h3>
-            <p>Ontwerp en fabricage met digitale precisie</p>
+            <p data-i18n="skills.cad">Ontwerp en fabricage met digitale precisie</p>
         </div>
         <div class="skill-card reveal reveal-d1">
             <span class="icon">&#9653;</span>
             <h3>Autodesk Inventor</h3>
-            <p>3D-modellering en technisch ontwerp</p>
+            <p data-i18n="skills.inventor">3D-modellering en technisch ontwerp</p>
         </div>
         <div class="skill-card reveal reveal-d2">
             <span class="icon">&#9998;</span>
-            <h3>Technisch tekenen</h3>
-            <p>Nauwkeurige technische documentatie</p>
+            <h3 data-i18n="skills.tekenen">Technisch tekenen</h3>
+            <p data-i18n="skills.tekenen.desc">Nauwkeurige technische documentatie</p>
         </div>
         <div class="skill-card reveal reveal-d3">
             <span class="icon">&#8854;</span>
             <h3>Precision Machining</h3>
-            <p>CNC frezen, draaien en verspaning</p>
+            <p data-i18n="skills.machining">CNC frezen, draaien en verspaning</p>
         </div>
         <div class="skill-card reveal reveal-d4">
             <span class="icon">&#9889;</span>
-            <h3>Mechatronica</h3>
-            <p>Elektrotechniek en instrumentatie</p>
+            <h3 data-i18n="skills.mecha">Mechatronica</h3>
+            <p data-i18n="skills.mecha.desc">Elektrotechniek en instrumentatie</p>
         </div>
         <div class="skill-card reveal reveal-d5">
             <span class="icon">&#9776;</span>
             <h3>Microsoft Office</h3>
-            <p>Documentatie en administratie</p>
+            <p data-i18n="skills.office">Documentatie en administratie</p>
         </div>
     </div>
 </section>
@@ -916,45 +939,45 @@
 <div class="section-bg">
 <section class="section" id="ervaring">
     <div class="section-header reveal">
-        <p class="eyebrow">Werkervaring</p>
-        <h2>Waar ik gewerkt heb</h2>
-        <p>Van veldwerk tot precisietechniek</p>
+        <p class="eyebrow" data-i18n="exp.eye">Werkervaring</p>
+        <h2 data-i18n="exp.h2">Waar ik gewerkt heb</h2>
+        <p data-i18n="exp.sub">Van veldwerk tot precisietechniek</p>
     </div>
     <div class="timeline">
         <div class="tl-item current reveal">
-            <span class="period">jun 2024 — heden</span>
-            <h3>Researchinstrumentmaker (in opleiding)</h3>
+            <span class="period" data-i18n="exp.lis.period">jun 2024 — heden</span>
+            <h3 data-i18n="exp.lis.title">Researchinstrumentmaker (in opleiding)</h3>
             <p class="company">Leidse instrumentmakers School</p>
             <p class="location">Leiden</p>
-            <p class="desc">Opleiding tot research instrumentmaker met focus op mechanische techniek, precisiebewerking, CAD/CAM en instrumentontwikkeling voor wetenschappelijk onderzoek.</p>
+            <p class="desc" data-i18n="exp.lis.desc">Opleiding tot research instrumentmaker met focus op mechanische techniek, precisiebewerking, CAD/CAM en instrumentontwikkeling voor wetenschappelijk onderzoek.</p>
         </div>
         <div class="tl-item reveal">
             <span class="period">2025 — 2026</span>
-            <h3>ESERO CanSat competitie</h3>
-            <p class="company">CanSat 2026 — Stage</p>
-            <p class="location">Nederland</p>
-            <p class="desc">Met een eigen team een CanSat ontworpen, gebouwd en gelanceerd.</p>
+            <h3 data-i18n="exp.cansat.title">ESERO CanSat competitie</h3>
+            <p class="company" data-i18n="exp.cansat.company">CanSat 2026 — Stage</p>
+            <p class="location" data-i18n="exp.cansat.loc">Nederland</p>
+            <p class="desc" data-i18n="exp.cansat.desc">Met een eigen team een CanSat ontworpen, gebouwd en gelanceerd.</p>
         </div>
         <div class="tl-item reveal">
             <span class="period">jun 2020 — jun 2021</span>
-            <h3>Technische dienst veldwerk</h3>
+            <h3 data-i18n="exp.soil.title">Technische dienst veldwerk</h3>
             <p class="company">Soil Select</p>
-            <p class="location">Den Haag</p>
-            <p class="desc">In een klein team met een veldwerkbus precisie-analyse van de bodemomschrijving maken en vervuiling of onregelmatigheden in kaart brengen.</p>
+            <p class="location" data-i18n="exp.soil.loc">Den Haag</p>
+            <p class="desc" data-i18n="exp.soil.desc">In een klein team met een veldwerkbus precisie-analyse van de bodemomschrijving maken en vervuiling of onregelmatigheden in kaart brengen.</p>
         </div>
         <div class="tl-item reveal">
             <span class="period">mrt 2015 — jun 2020</span>
-            <h3>Manager lunchkeuken</h3>
+            <h3 data-i18n="exp.harvest.title">Manager lunchkeuken</h3>
             <p class="company">Harvest House International</p>
             <p class="location">Maasdijk</p>
-            <p class="desc">Met een klein team van 3 mensen dagelijks de lunch verzorgen. Focus op samenwerking en representatie.</p>
+            <p class="desc" data-i18n="exp.harvest.desc">Met een klein team van 3 mensen dagelijks de lunch verzorgen. Focus op samenwerking en representatie.</p>
         </div>
         <div class="tl-item reveal">
             <span class="period">jun 2010 — jun 2014</span>
-            <h3>Medewerker verkoopklaar</h3>
+            <h3 data-i18n="exp.ah.title">Medewerker verkoopklaar</h3>
             <p class="company">AH Koornneef Naaldwijk</p>
             <p class="location">Naaldwijk</p>
-            <p class="desc">Eindverantwoordelijke diepvriesafdeling en afsluiting winkel. Geleerd professioneel met klanten te werken.</p>
+            <p class="desc" data-i18n="exp.ah.desc">Eindverantwoordelijke diepvriesafdeling en afsluiting winkel. Geleerd professioneel met klanten te werken.</p>
         </div>
     </div>
 </section>
@@ -963,35 +986,35 @@
 <!-- OPLEIDING -->
 <section class="section" id="opleiding">
     <div class="section-header reveal">
-        <p class="eyebrow">Scholing</p>
-        <h2>Opleiding</h2>
+        <p class="eyebrow" data-i18n="edu.eye">Scholing</p>
+        <h2 data-i18n="edu.h2">Opleiding</h2>
     </div>
     <div class="edu-grid">
         <div class="edu-card highlight reveal">
             <div>
                 <h3>Leidse instrumentmakers School</h3>
-                <p class="study">Researchinstrumentmaker — Mechanische techniek</p>
+                <p class="study" data-i18n="edu.lis">Researchinstrumentmaker — Mechanische techniek</p>
             </div>
             <span class="year">2024 — 2028</span>
         </div>
         <div class="edu-card reveal reveal-d1">
             <div>
                 <h3>SVO vakopleiding food</h3>
-                <p class="study">MBO 4 — Opleiding zelfstandig ondernemer</p>
+                <p class="study" data-i18n="edu.svo">MBO 4 — Opleiding zelfstandig ondernemer</p>
             </div>
             <span class="year">2023 — 2024</span>
         </div>
         <div class="edu-card reveal reveal-d2">
             <div>
                 <h3>Tinwerf MBO 4</h3>
-                <p class="study">Industrieel product ontwerpen — VCA diploma</p>
+                <p class="study" data-i18n="edu.tinwerf">Industrieel product ontwerpen — VCA diploma</p>
             </div>
             <span class="year">2013 — 2014</span>
         </div>
         <div class="edu-card reveal reveal-d3">
             <div>
                 <h3>Floracollege</h3>
-                <p class="study">VMBO-TL — Diploma behaald</p>
+                <p class="study" data-i18n="edu.flora">VMBO-TL — Diploma behaald</p>
             </div>
             <span class="year">2008 — 2013</span>
         </div>
@@ -1002,29 +1025,29 @@
 <div class="section-bg">
 <section class="section">
     <div class="section-header reveal">
-        <p class="eyebrow">Persoonlijk</p>
-        <h2>Meer over mij</h2>
+        <p class="eyebrow" data-i18n="about.eye">Persoonlijk</p>
+        <h2 data-i18n="about.h2">Meer over mij</h2>
     </div>
     <div class="about-grid reveal">
         <div class="about-card">
-            <h3>Vrijwilligerswerk</h3>
-            <p>De Flatertheek, Naaldwijk — Bardienst, kassabeheer en website bijgehouden met artikelen over evenementen.</p>
+            <h3 data-i18n="about.vol.h3">Vrijwilligerswerk</h3>
+            <p data-i18n="about.vol.p">De Flatertheek, Naaldwijk — Bardienst, kassabeheer en website bijgehouden met artikelen over evenementen.</p>
         </div>
         <div class="about-card">
-            <h3>Interesses</h3>
+            <h3 data-i18n="about.int.h3">Interesses</h3>
             <p>
-                <span class="interest-tag">Koken & voeding</span>
-                <span class="interest-tag">Backpacken</span>
-                <span class="interest-tag">Tekenen</span>
+                <span class="interest-tag" data-i18n="about.int.1">Koken & voeding</span>
+                <span class="interest-tag" data-i18n="about.int.2">Backpacken</span>
+                <span class="interest-tag" data-i18n="about.int.3">Tekenen</span>
             </p>
         </div>
     </div>
     <div class="tags-row reveal">
-        <div class="tag">Nederlands <span class="level">Moedertaal</span></div>
-        <div class="tag">Engels <span class="level">Kundig</span></div>
-        <div class="tag">Duits <span class="level">Beginner</span></div>
-        <div class="tag">VCA BASIS <span class="level">Geldig tot 2035</span></div>
-        <div class="tag">VCCN-Cleanroom <span class="level">Examen behaald</span></div>
+        <div class="tag" data-i18n-html="tag.nl">Nederlands <span class="level">Moedertaal</span></div>
+        <div class="tag" data-i18n-html="tag.en">Engels <span class="level">Kundig</span></div>
+        <div class="tag" data-i18n-html="tag.de">Duits <span class="level">Beginner</span></div>
+        <div class="tag" data-i18n-html="tag.vca">VCA BASIS <span class="level">Geldig tot 2035</span></div>
+        <div class="tag" data-i18n-html="tag.vccn">VCCN-Cleanroom <span class="level">Examen behaald</span></div>
     </div>
 </section>
 </div>
@@ -1032,28 +1055,28 @@
 <!-- CERTIFICATEN -->
 <section class="section" id="certificaten">
     <div class="section-header reveal">
-        <p class="eyebrow">Kwalificaties</p>
-        <h2>Certificaten</h2>
-        <p>Behaalde certificeringen en veiligheidskwalificaties</p>
+        <p class="eyebrow" data-i18n="cert.eye">Kwalificaties</p>
+        <h2 data-i18n="cert.h2">Certificaten</h2>
+        <p data-i18n="cert.sub">Behaalde certificeringen en veiligheidskwalificaties</p>
     </div>
     <div class="cert-grid">
         <div class="cert-card reveal">
             <span class="cert-icon">&#128272;</span>
             <h3>VCA Basis (B-VCA)</h3>
-            <p class="cert-issuer">Veiligheid, Gezondheid en Milieu Checklist Aannemers</p>
-            <div class="cert-status">Geldig</div>
-            <p class="cert-validity">Geldig tot 2035</p>
+            <p class="cert-issuer" data-i18n="cert.vca.issuer">Veiligheid, Gezondheid en Milieu Checklist Aannemers</p>
+            <div class="cert-status" data-i18n="cert.vca.status">Geldig</div>
+            <p class="cert-validity" data-i18n="cert.vca.validity">Geldig tot 2035</p>
             <div class="cert-qr">
                 <img src="images/vca-qr.png" alt="QR-code VCA certificaat">
-                <span class="qr-label">Scan de QR-code om<br>het certificaat te verifi&euml;ren</span>
+                <span class="qr-label" data-i18n-html="cert.vca.qr">Scan de QR-code om<br>het certificaat te verifi&euml;ren</span>
             </div>
         </div>
         <div class="cert-card reveal reveal-d1">
             <span class="cert-icon">&#127981;</span>
             <h3>VCCN Cleanroom</h3>
-            <p class="cert-issuer">Vereniging Contamination Control Nederland</p>
-            <div class="cert-status">Behaald</div>
-            <p class="cert-validity">Examen behaald</p>
+            <p class="cert-issuer" data-i18n="cert.vccn.issuer">Vereniging Contamination Control Nederland</p>
+            <div class="cert-status" data-i18n="cert.vccn.status">Behaald</div>
+            <p class="cert-validity" data-i18n="cert.vccn.validity">Examen behaald</p>
         </div>
     </div>
 </section>
@@ -1062,8 +1085,8 @@
 <section class="section contact-section" id="contact">
     <div class="section-header reveal">
         <p class="eyebrow">Contact</p>
-        <h2>Laten we praten.</h2>
-        <p>Interesse in samenwerking of wil je meer weten?</p>
+        <h2 data-i18n="contact.h2">Laten we praten.</h2>
+        <p data-i18n="contact.sub">Interesse in samenwerking of wil je meer weten?</p>
     </div>
     <div class="contact-links reveal reveal-d1">
         <a href="mailto:borisvoll@hotmail.com">&#9993; borisvoll@hotmail.com</a>
@@ -1080,7 +1103,7 @@
 
 <div class="settings-panel" id="settingsPanel">
     <div class="settings-header">
-        <h3>Thema</h3>
+        <h3 data-i18n="settings.theme">Thema</h3>
         <button class="settings-close" id="settingsClose">&times;</button>
     </div>
     <div class="theme-presets">
@@ -1118,10 +1141,10 @@
         </button>
     </div>
     <div class="settings-section">
-        <label class="settings-label">Achtergrond</label>
+        <label class="settings-label" data-i18n="settings.bg">Achtergrond</label>
         <div class="bg-toggle">
-            <button class="bg-btn active" data-bg="dark">Donker</button>
-            <button class="bg-btn" data-bg="light">Licht</button>
+            <button class="bg-btn active" data-bg="dark" data-i18n="settings.dark">Donker</button>
+            <button class="bg-btn" data-bg="light" data-i18n="settings.light">Licht</button>
         </div>
     </div>
 </div>
@@ -1136,16 +1159,16 @@
     //   { src: "bestandsnaam.jpg", caption: "Beschrijving" }
     //
     const fotos = [
-        { src: "groep-cnc.jpg",           caption: "Met medestudenten bij de CNC machines" },
-        { src: "precisie-instrument.jpg",  caption: "Precisie-instrument" },
-        { src: "lego-blok.jpg",            caption: "Aluminium LEGO blok" },
-        { src: "gefreesd-blok.jpg",        caption: "CNC gefreesd werkstuk" },
-        { src: "assemblage.jpg",           caption: "CanSat assemblage" },
-        { src: "instrument-behuizing.jpg", caption: "CanSat in behuizing" },
-        { src: "open-dag.jpg",             caption: "Open dag LiS" },
-        { src: "reactor-groep.jpg",        caption: "Bezoek aan de kernreactor" },
-        { src: "brug-uitzicht.jpg",        caption: "Fotografie — perspectief" },
-        { src: "bospad.jpg",               caption: "Fotografie — natuur" },
+        { src: "groep-cnc.jpg",           caption: "Met medestudenten bij de CNC machines",  en: "With fellow students at the CNC machines" },
+        { src: "precisie-instrument.jpg",  caption: "Precisie-instrument",                    en: "Precision instrument" },
+        { src: "lego-blok.jpg",            caption: "Aluminium LEGO blok",                    en: "Aluminium LEGO block" },
+        { src: "gefreesd-blok.jpg",        caption: "CNC gefreesd werkstuk",                  en: "CNC milled workpiece" },
+        { src: "assemblage.jpg",           caption: "CanSat assemblage",                      en: "CanSat assembly" },
+        { src: "instrument-behuizing.jpg", caption: "CanSat in behuizing",                    en: "CanSat in housing" },
+        { src: "open-dag.jpg",             caption: "Open dag LiS",                           en: "LiS open day" },
+        { src: "reactor-groep.jpg",        caption: "Bezoek aan de kernreactor",              en: "Nuclear reactor visit" },
+        { src: "brug-uitzicht.jpg",        caption: "Fotografie — perspectief",               en: "Photography — perspective" },
+        { src: "bospad.jpg",               caption: "Fotografie — natuur",                    en: "Photography — nature" },
     ];
 
     // Bouw de bento-grid automatisch
@@ -1257,6 +1280,164 @@
         document.body.style.overflow = '';
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBasket(); });
+
+    // === LANGUAGE SWITCH (NL/EN) ===
+    let currentLang = 'nl';
+
+    const i18n = {
+        en: {
+            // Nav
+            'nav.projecten': 'Projects',
+            'nav.skills': 'Skills',
+            'nav.ervaring': 'Experience',
+            'nav.opleiding': 'Education',
+            'nav.certificaten': 'Certificates',
+            'nav.contact': 'Contact',
+            // Hero
+            'hero.badge': 'Available for internships & assignments',
+            'hero.subtitle': 'Student Research Instrument Maker',
+            'hero.bio': 'Motivated student at the Leidse instrumentmakers School with a passion for precision engineering and innovation. Experience in CAD/CAM, machining and mechatronics.',
+            'hero.cta1': 'Get in touch',
+            'hero.cta2': 'View LinkedIn',
+            // Projecten
+            'proj.eye': 'Portfolio',
+            'proj.h2': 'Work & Projects',
+            'proj.sub': 'From precision instruments to CanSat competitions',
+            // Skills
+            'skills.eye': 'Expertise',
+            'skills.h2': 'Skills',
+            'skills.sub': 'The tools and techniques I master',
+            'skills.cad': 'Design and manufacturing with digital precision',
+            'skills.inventor': '3D modelling and technical design',
+            'skills.tekenen': 'Technical Drawing',
+            'skills.tekenen.desc': 'Accurate technical documentation',
+            'skills.machining': 'CNC milling, turning and machining',
+            'skills.mecha': 'Mechatronics',
+            'skills.mecha.desc': 'Electrical engineering and instrumentation',
+            'skills.office': 'Documentation and administration',
+            // Ervaring
+            'exp.eye': 'Work Experience',
+            'exp.h2': 'Where I\'ve worked',
+            'exp.sub': 'From fieldwork to precision engineering',
+            'exp.lis.period': 'Jun 2024 — present',
+            'exp.lis.title': 'Research Instrument Maker (in training)',
+            'exp.lis.desc': 'Training as a research instrument maker with a focus on mechanical engineering, precision machining, CAD/CAM and instrument development for scientific research.',
+            'exp.cansat.title': 'ESERO CanSat competition',
+            'exp.cansat.company': 'CanSat 2026 — Internship',
+            'exp.cansat.loc': 'The Netherlands',
+            'exp.cansat.desc': 'Designed, built and launched a CanSat with a dedicated team.',
+            'exp.soil.title': 'Field Engineering Technician',
+            'exp.soil.loc': 'The Hague',
+            'exp.soil.desc': 'Precision analysis of soil composition in a small team with a field vehicle, mapping contamination and irregularities.',
+            'exp.harvest.title': 'Kitchen Manager',
+            'exp.harvest.desc': 'Managed daily lunch service with a small team of 3. Focus on teamwork and presentation.',
+            'exp.ah.title': 'Retail Associate',
+            'exp.ah.desc': 'Responsible for the frozen foods section and store closing procedures. Learned to work professionally with customers.',
+            // Opleiding
+            'edu.eye': 'Education',
+            'edu.h2': 'Education',
+            'edu.lis': 'Research Instrument Maker — Mechanical Engineering',
+            'edu.svo': 'MBO 4 — Independent Entrepreneur',
+            'edu.tinwerf': 'Industrial Product Design — VCA diploma',
+            'edu.flora': 'VMBO-TL — Diploma achieved',
+            // Meer over mij
+            'about.eye': 'Personal',
+            'about.h2': 'About Me',
+            'about.vol.h3': 'Volunteering',
+            'about.vol.p': 'De Flatertheek, Naaldwijk — Bar service, cash register and maintained the website with articles about events.',
+            'about.int.h3': 'Interests',
+            'about.int.1': 'Cooking & nutrition',
+            'about.int.2': 'Backpacking',
+            'about.int.3': 'Drawing',
+            // Certificaten
+            'cert.eye': 'Qualifications',
+            'cert.h2': 'Certificates',
+            'cert.sub': 'Achieved certifications and safety qualifications',
+            'cert.vca.issuer': 'Safety, Health and Environment Checklist for Contractors',
+            'cert.vca.status': 'Valid',
+            'cert.vca.validity': 'Valid until 2035',
+            'cert.vccn.issuer': 'Dutch Contamination Control Association',
+            'cert.vccn.status': 'Achieved',
+            'cert.vccn.validity': 'Exam passed',
+            // Contact
+            'contact.h2': 'Let\'s talk.',
+            'contact.sub': 'Interested in collaboration or want to learn more?',
+            // Settings
+            'settings.theme': 'Theme',
+            'settings.bg': 'Background',
+            'settings.dark': 'Dark',
+            'settings.light': 'Light',
+        },
+        // HTML translations (contain markup)
+        en_html: {
+            'tag.nl': 'Dutch <span class="level">Native</span>',
+            'tag.en': 'English <span class="level">Proficient</span>',
+            'tag.de': 'German <span class="level">Basic</span>',
+            'tag.vca': 'VCA BASIS <span class="level">Valid until 2035</span>',
+            'tag.vccn': 'VCCN Cleanroom <span class="level">Exam passed</span>',
+            'cert.vca.qr': 'Scan the QR code to<br>verify the certificate',
+        },
+        nl_html: {
+            'tag.nl': 'Nederlands <span class="level">Moedertaal</span>',
+            'tag.en': 'Engels <span class="level">Kundig</span>',
+            'tag.de': 'Duits <span class="level">Beginner</span>',
+            'tag.vca': 'VCA BASIS <span class="level">Geldig tot 2035</span>',
+            'tag.vccn': 'VCCN-Cleanroom <span class="level">Examen behaald</span>',
+            'cert.vca.qr': 'Scan de QR-code om<br>het certificaat te verifi\u00EBren',
+        }
+    };
+
+    // Store original NL texts on first load
+    const nlTexts = {};
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        nlTexts[el.getAttribute('data-i18n')] = el.textContent;
+    });
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+
+        // Text-only translations
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (lang === 'en' && i18n.en[key]) {
+                el.textContent = i18n.en[key];
+            } else if (lang === 'nl' && nlTexts[key]) {
+                el.textContent = nlTexts[key];
+            }
+        });
+
+        // HTML translations (tags with nested spans)
+        const htmlMap = lang === 'en' ? i18n.en_html : i18n.nl_html;
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (htmlMap[key]) el.innerHTML = htmlMap[key];
+        });
+
+        // Update photo captions
+        document.querySelectorAll('#bentoGrid .bento-item').forEach((item, idx) => {
+            if (fotos[idx]) {
+                const cap = item.querySelector('.caption');
+                if (cap) cap.textContent = lang === 'en' ? (fotos[idx].en || fotos[idx].caption) : fotos[idx].caption;
+            }
+        });
+
+        // Toggle button state
+        document.querySelectorAll('#langToggle span').forEach(s => {
+            s.classList.toggle('active', s.getAttribute('data-lang') === lang);
+        });
+
+        localStorage.setItem('portfolio-lang', lang);
+    }
+
+    // Language toggle click handler
+    document.querySelectorAll('#langToggle span').forEach(s => {
+        s.addEventListener('click', () => setLanguage(s.getAttribute('data-lang')));
+    });
+
+    // Restore saved language
+    const savedLang = localStorage.getItem('portfolio-lang');
+    if (savedLang && savedLang !== 'nl') setLanguage(savedLang);
 </script>
 
 <!-- BASKET MODAL -->
@@ -1278,7 +1459,7 @@
 
         <div class="basket-section">
             <h3>Experience</h3>
-            <div class="basket-row"><span>Student Research Instrumentmaker</span><span>LiS · 2024 – 2028</span></div>
+            <div class="basket-row"><span>Student Research Instrumentmaker</span><span>LiS · 2024 – present</span></div>
             <div class="basket-row"><span>Intern — ESERO CanSat</span><span>2025 – 2026</span></div>
             <div class="basket-row"><span>Field Engineering Technician</span><span>Soil Select · 2020 – 2021</span></div>
             <div class="basket-row"><span>Kitchen Manager</span><span>Harvest House · 2015 – 2020</span></div>
@@ -1288,8 +1469,8 @@
         <div class="basket-section">
             <h3>Education</h3>
             <div class="basket-row"><span>Research Instrumentmaker</span><span>LiS · 2024 – 2028</span></div>
-            <div class="basket-row"><span>Service & Maintenance Engineer (MBO4)</span><span>SVO · 2020 – 2024</span></div>
-            <div class="basket-row"><span>Precision Metalworking (MBO4)</span><span>De Tinwerf · 2020 – 2024</span></div>
+            <div class="basket-row"><span>Independent Entrepreneur (MBO4)</span><span>SVO · 2023 – 2024</span></div>
+            <div class="basket-row"><span>Industrial Product Design (MBO4)</span><span>De Tinwerf · 2013 – 2014</span></div>
             <div class="basket-row"><span>VMBO-TL</span><span>Floracollege</span></div>
         </div>
 
