@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open -a \"Arc\" /Users/borisvollebregt/test-claude/index.html)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(npm install -g netlify-cli)",
+      "Bash(netlify deploy --prod --dir=.)",
+      "Bash(netlify login)",
+      "Bash(netlify status)",
+      "Bash(netlify deploy --prod --dir=/Users/borisvollebregt/test-claude)",
+      "Bash(which gh && gh auth status)",
+      "Bash(brew install gh)",
+      "Bash(/opt/homebrew/bin/brew install gh)",
+      "Bash(/opt/homebrew/bin/gh auth status 2>&1 || true)",
+      "Bash(/opt/homebrew/bin/gh auth login --web -p https -h github.com)",
+      "Bash(git init && git add -A && git commit -m \"Portfolio Boris Jan Vollebregt\")"
+    ]
+  }
+}
