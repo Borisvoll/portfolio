@@ -547,6 +547,71 @@
         }
         .interest-tag:hover { background: rgba(245,158,11,0.16); }
 
+        /* === CERTIFICATEN === */
+        .cert-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+            max-width: 720px; margin: 0 auto;
+        }
+        .cert-card {
+            background: var(--card); border-radius: 24px;
+            padding: 36px 32px; position: relative; overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cert-card::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: var(--gradient);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .cert-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .cert-card:hover::before { opacity: 1; }
+        .cert-card .cert-icon {
+            font-size: 2.2em; margin-bottom: 16px; display: block;
+        }
+        .cert-card h3 {
+            font-size: 1.15em; font-weight: 700; margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+        .cert-card .cert-issuer {
+            color: var(--text-muted); font-size: 0.85em; font-weight: 400;
+            margin-bottom: 4px;
+        }
+        .cert-card .cert-status {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.78em; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 12px;
+        }
+        .cert-card .cert-status::before {
+            content: ''; width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent-1); flex-shrink: 0;
+        }
+        .cert-card .cert-validity {
+            color: var(--text-dim); font-size: 0.8em; font-weight: 300;
+            margin-top: 4px;
+        }
+        .cert-qr {
+            margin-top: 20px; display: flex; align-items: center; gap: 16px;
+        }
+        .cert-qr img {
+            width: 100px; height: 100px; border-radius: 12px;
+            background: #fff; padding: 6px;
+        }
+        .cert-qr .qr-label {
+            color: var(--text-dim); font-size: 0.78em; font-weight: 300;
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .cert-grid { grid-template-columns: 1fr; }
+        }
+
         /* === CONTACT === */
         .contact-section { text-align: center; }
         .contact-section h2 {
@@ -750,6 +815,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#ervaring">Ervaring</a></li>
             <li><a href="#opleiding">Opleiding</a></li>
+            <li><a href="#certificaten">Certificaten</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="basket-btn" onclick="document.getElementById('basketOverlay').classList.add('active'); document.body.style.overflow='hidden';">
@@ -962,6 +1028,35 @@
     </div>
 </section>
 </div>
+
+<!-- CERTIFICATEN -->
+<section class="section" id="certificaten">
+    <div class="section-header reveal">
+        <p class="eyebrow">Kwalificaties</p>
+        <h2>Certificaten</h2>
+        <p>Behaalde certificeringen en veiligheidskwalificaties</p>
+    </div>
+    <div class="cert-grid">
+        <div class="cert-card reveal">
+            <span class="cert-icon">&#128272;</span>
+            <h3>VCA Basis (B-VCA)</h3>
+            <p class="cert-issuer">Veiligheid, Gezondheid en Milieu Checklist Aannemers</p>
+            <div class="cert-status">Geldig</div>
+            <p class="cert-validity">Geldig tot 2035</p>
+            <div class="cert-qr">
+                <img src="images/vca-qr.png" alt="QR-code VCA certificaat">
+                <span class="qr-label">Scan de QR-code om<br>het certificaat te verifi&euml;ren</span>
+            </div>
+        </div>
+        <div class="cert-card reveal reveal-d1">
+            <span class="cert-icon">&#127981;</span>
+            <h3>VCCN Cleanroom</h3>
+            <p class="cert-issuer">Vereniging Contamination Control Nederland</p>
+            <div class="cert-status">Behaald</div>
+            <p class="cert-validity">Examen behaald</p>
+        </div>
+    </div>
+</section>
 
 <!-- CONTACT -->
 <section class="section contact-section" id="contact">
