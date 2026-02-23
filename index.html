@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio van Boris Jan Vollebregt — Student Research Instrumentmaker aan de Leidse instrumentmakers School. Ervaring in CAD/CAM, precisietechniek en mechatronica.">
     <title>Boris Jan Vollebregt — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
         @font-face {
             font-family: 'DIN 1451';
@@ -79,7 +82,7 @@
             transition: all 0.5s;
         }
         nav.scrolled {
-            background: rgba(5,5,5,0.8);
+            background: rgba(5,5,5,0.85);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -128,13 +131,13 @@
         body.light-mode .basket-overlay { background: rgba(255,255,255,0.7); }
 
         .basket-card {
-            background: #111; border: 1px solid rgba(255,255,255,0.08);
+            background: var(--card); border: 1px solid rgba(255,255,255,0.08);
             border-radius: 24px; width: 100%; max-width: 680px;
             max-height: 90vh; overflow-y: auto;
             padding: 40px; position: relative;
             animation: lbIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        body.light-mode .basket-card { background: #fff; border-color: rgba(0,0,0,0.08); }
+        body.light-mode .basket-card { background: #fff; border-color: rgba(0,0,0,0.1); }
 
         .basket-card::-webkit-scrollbar { width: 6px; }
         .basket-card::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
@@ -148,6 +151,17 @@
             transition: all 0.3s;
         }
         .basket-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+
+        .basket-profile-text h3 {
+            font-family: 'DIN 1451', 'Share Tech Mono', monospace;
+            font-size: 1.3rem; margin: 0;
+        }
+        .basket-profile-text p {
+            color: var(--accent-1); font-size: 0.85rem; margin: 0;
+        }
+        .basket-profile-desc {
+            font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;
+        }
 
         .basket-header {
             display: flex; align-items: center; gap: 20px;
@@ -215,6 +229,24 @@
             background: rgba(255,255,255,0.06); color: var(--text);
         }
         .basket-cta .cta-secondary:hover { background: rgba(255,255,255,0.1); }
+        .basket-cta-btn { font-size: 0.85rem; padding: 10px 28px; }
+
+        .basket-lang-toggle {
+            display: flex; gap: 4px; margin-bottom: 20px;
+            background: rgba(255,255,255,0.04); border-radius: 10px; padding: 3px;
+        }
+        .basket-lang-btn {
+            flex: 1; padding: 6px 12px; border: none; border-radius: 8px;
+            background: transparent; color: var(--text-muted);
+            font-size: 0.78em; font-weight: 600; cursor: pointer;
+            transition: all 0.3s;
+        }
+        .basket-lang-btn.active {
+            background: rgba(255,255,255,0.1); color: var(--text);
+        }
+        .basket-lang-btn:hover:not(.active) { color: var(--text); }
+        body.light-mode .basket-lang-toggle { background: rgba(0,0,0,0.04); }
+        body.light-mode .basket-lang-btn.active { background: rgba(0,0,0,0.08); }
 
         /* === HERO === */
         .hero {
@@ -752,8 +784,8 @@
             <li><a href="#opleiding">Opleiding</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="basket-btn" onclick="document.getElementById('basketOverlay').classList.add('active'); document.body.style.overflow='hidden';">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <button class="basket-btn" id="basketBtn" aria-label="Open CV overzicht">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             Mand
         </button>
     </div>
@@ -762,6 +794,8 @@
 <a href="https://www.lis.nl" target="_blank" class="lis-widget" title="Leidse instrumentmakers School">
     <img src="images/lis-logo.webp" alt="LiS">
 </a>
+
+<main>
 
 <!-- HERO -->
 <header class="hero">
@@ -796,44 +830,44 @@
         <p>Van precisie-instrumenten tot CanSat competities</p>
     </div>
     <div class="bento">
-        <div class="bento-item b-feature scale-in" onclick="openLightbox(this)">
+        <div class="bento-item b-feature scale-in" role="button" tabindex="0">
             <img src="images/groep-cnc.jpg" alt="Groepsfoto bij CNC machines" loading="lazy">
             <div class="caption">Met medestudenten bij de CNC machines</div>
         </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
+        <div class="bento-item scale-in" role="button" tabindex="0">
             <img src="images/precisie-instrument.jpg" alt="Precisie-instrument" loading="lazy">
             <div class="caption">Precisie-instrument</div>
         </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
+        <div class="bento-item scale-in" role="button" tabindex="0">
             <img src="images/lego-blok.jpg" alt="Aluminium LEGO blok" loading="lazy">
             <div class="caption">Aluminium LEGO blok</div>
         </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
+        <div class="bento-item scale-in" role="button" tabindex="0">
             <img src="images/gefreesd-blok.jpg" alt="CNC gefreesd werkstuk" loading="lazy">
             <div class="caption">CNC gefreesd werkstuk</div>
         </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
+        <div class="bento-item scale-in" role="button" tabindex="0">
             <img src="images/assemblage.jpg" alt="CanSat assemblage" loading="lazy">
             <div class="caption">CanSat assemblage</div>
         </div>
-        <div class="bento-item b-wide scale-in" onclick="openLightbox(this)">
+        <div class="bento-item b-wide scale-in" role="button" tabindex="0">
             <img src="images/instrument-behuizing.jpg" alt="CanSat in behuizing" loading="lazy">
             <div class="caption">CanSat in behuizing</div>
         </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
+        <div class="bento-item scale-in" role="button" tabindex="0">
             <img src="images/open-dag.jpg" alt="Open dag LiS" loading="lazy">
             <div class="caption">Open dag LiS</div>
         </div>
-        <div class="bento-item scale-in" onclick="openLightbox(this)">
+        <div class="bento-item scale-in" role="button" tabindex="0">
             <img src="images/reactor-groep.jpg" alt="Bezoek kernreactor" loading="lazy">
             <div class="caption">Bezoek aan de kernreactor</div>
         </div>
-        <div class="bento-item b-wide scale-in" onclick="openLightbox(this)">
+        <div class="bento-item b-wide scale-in" role="button" tabindex="0">
             <img src="images/brug-uitzicht.jpg" alt="Perspectief fotografie" loading="lazy">
             <div class="caption">Fotografie — perspectief</div>
         </div>
-        <div class="bento-item b-wide scale-in" onclick="openLightbox(this)">
-            <img src="images/bospad.jpg" alt="Fotografie" loading="lazy">
+        <div class="bento-item b-wide scale-in" role="button" tabindex="0">
+            <img src="images/bospad.jpg" alt="Natuur fotografie" loading="lazy">
             <div class="caption">Fotografie — natuur</div>
         </div>
     </div>
@@ -841,8 +875,8 @@
 </div>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="close-btn" onclick="closeLightbox()">&times;</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Foto vergroting">
+    <button class="close-btn" id="lightboxClose" aria-label="Sluit foto">&times;</button>
     <img id="lightbox-img" src="" alt="">
 </div>
 
@@ -1024,9 +1058,11 @@
     </div>
 </section>
 
+</main>
+
 <!-- SETTINGS PANEL -->
-<button class="settings-toggle" id="settingsToggle" title="Kleurinstellingen">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<button class="settings-toggle" id="settingsToggle" aria-label="Kleurinstellingen">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
     </svg>
 </button>
@@ -1082,40 +1118,115 @@
 <footer>&copy; 2026 Boris Jan Vollebregt — Den Haag</footer>
 
 <script>
-    // Intersection Observer for animations
+    // === INTERSECTION OBSERVER ===
     const obs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
     document.querySelectorAll('.reveal, .scale-in').forEach(el => obs.observe(el));
 
-    // Navbar
+    // === NAVBAR ===
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
-    // Lightbox
+    // === LIGHTBOX ===
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
     function openLightbox(el) {
-        document.getElementById('lightbox-img').src = el.querySelector('img').src;
-        document.getElementById('lightbox').classList.add('active');
+        const img = el.querySelector('img');
+        if (!img) return;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
+
     function closeLightbox() {
-        document.getElementById('lightbox').classList.remove('active');
+        lightbox.classList.remove('active');
         document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    document.querySelectorAll('.bento-item').forEach(item => {
+        item.addEventListener('click', () => openLightbox(item));
+        item.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(item);
+            }
+        });
+    });
+
+    lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+
+    // === BASKET MODAL ===
+    const basketOverlay = document.getElementById('basketOverlay');
+
+    function openBasket() {
+        basketOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeBasket() {
+        basketOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('basketBtn').addEventListener('click', openBasket);
+    document.getElementById('basketClose').addEventListener('click', closeBasket);
+    basketOverlay.addEventListener('click', e => {
+        if (e.target === basketOverlay) closeBasket();
+    });
+
+    // === BASKET LANGUAGE TOGGLE ===
+    let basketLang = 'nl';
+
+    function applyBasketLang(lang) {
+        basketLang = lang;
+        document.querySelectorAll('[data-lang-nl][data-lang-en]').forEach(el => {
+            el.textContent = el.getAttribute('data-lang-' + lang);
+        });
+        document.querySelectorAll('.basket-lang-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        localStorage.setItem('portfolio-basket-lang', lang);
+    }
+
+    document.querySelectorAll('.basket-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyBasketLang(btn.dataset.lang));
+    });
+
+    // === ESCAPE KEY (unified) ===
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            if (lightbox.classList.contains('active')) closeLightbox();
+            if (basketOverlay.classList.contains('active')) closeBasket();
+            if (settingsPanel.classList.contains('open')) settingsPanel.classList.remove('open');
+        }
+    });
 
     // === SETTINGS PANEL ===
     const settingsToggle = document.getElementById('settingsToggle');
     const settingsPanel = document.getElementById('settingsPanel');
-    const settingsClose = document.getElementById('settingsClose');
 
     settingsToggle.addEventListener('click', () => settingsPanel.classList.toggle('open'));
-    settingsClose.addEventListener('click', () => settingsPanel.classList.remove('open'));
+    document.getElementById('settingsClose').addEventListener('click', () => settingsPanel.classList.remove('open'));
 
-    // Theme presets
+    // Close settings when clicking outside
+    document.addEventListener('click', e => {
+        if (settingsPanel.classList.contains('open') &&
+            !settingsPanel.contains(e.target) &&
+            !settingsToggle.contains(e.target)) {
+            settingsPanel.classList.remove('open');
+        }
+    });
+
+    // === THEME PRESETS ===
     const themes = {
         sunset:  { a1: '#f59e0b', a2: '#f97316', a3: '#ef4444' },
         ocean:   { a1: '#06b6d4', a2: '#3b82f6', a3: '#6366f1' },
@@ -1137,14 +1248,15 @@
         r.setProperty('--gradient', `linear-gradient(135deg, ${t.a1}, ${t.a2}, ${t.a3})`);
         r.setProperty('--gradient-subtle', `linear-gradient(135deg, ${t.a1}26, ${t.a2}14)`);
 
-        // Update elements that use hardcoded gradients with var()
         const h1 = document.querySelector('.hero h1');
-        if (h1) h1.style.background = `linear-gradient(135deg, var(--text) 25%, ${t.a1} 55%, ${t.a3} 100%)`;
-        if (h1) { h1.style.webkitBackgroundClip = 'text'; h1.style.backgroundClip = 'text'; }
+        if (h1) {
+            h1.style.background = `linear-gradient(135deg, var(--text) 25%, ${t.a1} 55%, ${t.a3} 100%)`;
+            h1.style.webkitBackgroundClip = 'text';
+            h1.style.backgroundClip = 'text';
+        }
 
         document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
         document.querySelector(`[data-theme="${name}"]`)?.classList.add('active');
-
         localStorage.setItem('portfolio-theme', name);
     }
 
@@ -1152,7 +1264,7 @@
         btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
     });
 
-    // Background toggle
+    // === BACKGROUND TOGGLE ===
     function applyBg(mode) {
         document.body.classList.toggle('light-mode', mode === 'light');
         document.querySelectorAll('.bg-btn').forEach(b => b.classList.remove('active'));
@@ -1164,64 +1276,64 @@
         btn.addEventListener('click', () => applyBg(btn.dataset.bg));
     });
 
-    // Restore saved preferences
+    // === RESTORE SAVED PREFERENCES ===
     const savedTheme = localStorage.getItem('portfolio-theme');
     const savedBg = localStorage.getItem('portfolio-bg');
+    const savedLang = localStorage.getItem('portfolio-basket-lang');
     if (savedTheme) applyTheme(savedTheme);
     if (savedBg) applyBg(savedBg);
-
-    // === BASKET ===
-    function closeBasket() {
-        document.getElementById('basketOverlay').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBasket(); });
+    if (savedLang) applyBasketLang(savedLang);
 </script>
 
 <!-- BASKET MODAL -->
-<div class="basket-overlay" id="basketOverlay" onclick="if(event.target===this) closeBasket();">
+<div class="basket-overlay" id="basketOverlay" role="dialog" aria-label="CV overzicht">
     <div class="basket-card">
-        <button class="basket-close" onclick="closeBasket();">&times;</button>
+        <button class="basket-close" id="basketClose" aria-label="Sluit overzicht">&times;</button>
         <div class="basket-header">
-            <img src="images/portrait.jpg" alt="Boris" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-1);">
-            <div>
-                <h3 style="font-family:'DIN 1451','Share Tech Mono',monospace;font-size:1.3rem;margin:0;">Boris Jan Vollebregt</h3>
-                <p style="color:var(--accent-1);font-size:.85rem;margin:0;">Student Research Instrumentmaker</p>
+            <img src="images/portrait.jpg" alt="Boris Jan Vollebregt">
+            <div class="basket-profile-text">
+                <h3>Boris Jan Vollebregt</h3>
+                <p>Student Research Instrumentmaker</p>
             </div>
         </div>
 
-        <div class="basket-section">
-            <h3>Profile</h3>
-            <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5;">Motivated student at the Leidse instrumentmakers School (LiS) with hands-on experience in precision machining, CAD/CAM, mechatronics, and cleanroom technology. Available for internships and assignments.</p>
+        <div class="basket-lang-toggle">
+            <button class="basket-lang-btn active" data-lang="nl">Nederlands</button>
+            <button class="basket-lang-btn" data-lang="en">English</button>
         </div>
 
         <div class="basket-section">
-            <h3>Experience</h3>
-            <div class="basket-row"><span>Student Research Instrumentmaker</span><span>LiS · 2024 – 2028</span></div>
-            <div class="basket-row"><span>Intern — ESERO CanSat</span><span>2025 – 2026</span></div>
-            <div class="basket-row"><span>Field Engineering Technician</span><span>Soil Select · 2020 – 2021</span></div>
-            <div class="basket-row"><span>Kitchen Manager</span><span>Harvest House · 2015 – 2020</span></div>
-            <div class="basket-row"><span>Retail Associate</span><span>AH Koornneef · 2010 – 2014</span></div>
+            <h3 data-lang-nl="Profiel" data-lang-en="Profile">Profiel</h3>
+            <p class="basket-profile-desc" data-lang-nl="Gemotiveerde student aan de Leidse instrumentmakers School (LiS) met praktijkervaring in precisiebewerking, CAD/CAM, mechatronica en cleanroomtechnologie. Beschikbaar voor stages en opdrachten." data-lang-en="Motivated student at the Leidse instrumentmakers School (LiS) with hands-on experience in precision machining, CAD/CAM, mechatronics, and cleanroom technology. Available for internships and assignments.">Gemotiveerde student aan de Leidse instrumentmakers School (LiS) met praktijkervaring in precisiebewerking, CAD/CAM, mechatronica en cleanroomtechnologie. Beschikbaar voor stages en opdrachten.</p>
         </div>
 
         <div class="basket-section">
-            <h3>Education</h3>
-            <div class="basket-row"><span>Research Instrumentmaker</span><span>LiS · 2024 – 2028</span></div>
-            <div class="basket-row"><span>HBO Mathematics</span><span>LiS · 2026</span></div>
-            <div class="basket-row"><span>Food Entrepreneur (MBO 4)</span><span>SVO · 2021 – 2024</span></div>
-            <div class="basket-row"><span>Industrial Product Design (MBO 4)</span><span>De Tinwerf · 2013 – 2014</span></div>
+            <h3 data-lang-nl="Werkervaring" data-lang-en="Experience">Werkervaring</h3>
+            <div class="basket-row"><span data-lang-nl="Researchinstrumentmaker (i.o.)" data-lang-en="Student Research Instrumentmaker">Researchinstrumentmaker (i.o.)</span><span>LiS · 2024 – 2028</span></div>
+            <div class="basket-row"><span data-lang-nl="Stage — ESERO CanSat" data-lang-en="Intern — ESERO CanSat">Stage — ESERO CanSat</span><span>2025 – 2026</span></div>
+            <div class="basket-row"><span data-lang-nl="Technische dienst veldwerk" data-lang-en="Field Engineering Technician">Technische dienst veldwerk</span><span>Soil Select · 2020 – 2021</span></div>
+            <div class="basket-row"><span data-lang-nl="Manager lunchkeuken" data-lang-en="Kitchen Manager">Manager lunchkeuken</span><span>Harvest House · 2015 – 2020</span></div>
+            <div class="basket-row"><span data-lang-nl="Medewerker verkoopklaar" data-lang-en="Retail Associate">Medewerker verkoopklaar</span><span>AH Koornneef · 2010 – 2014</span></div>
+        </div>
+
+        <div class="basket-section">
+            <h3 data-lang-nl="Opleiding" data-lang-en="Education">Opleiding</h3>
+            <div class="basket-row"><span data-lang-nl="Researchinstrumentmaker" data-lang-en="Research Instrumentmaker">Researchinstrumentmaker</span><span>LiS · 2024 – 2028</span></div>
+            <div class="basket-row"><span data-lang-nl="HBO Wiskunde" data-lang-en="HBO Mathematics">HBO Wiskunde</span><span>LiS · 2026</span></div>
+            <div class="basket-row"><span data-lang-nl="Zelfstandig ondernemer food (MBO 4)" data-lang-en="Food Entrepreneur (MBO 4)">Zelfstandig ondernemer food (MBO 4)</span><span>SVO · 2021 – 2024</span></div>
+            <div class="basket-row"><span data-lang-nl="Industrieel product ontwerpen (MBO 4)" data-lang-en="Industrial Product Design (MBO 4)">Industrieel product ontwerpen (MBO 4)</span><span>De Tinwerf · 2013 – 2014</span></div>
             <div class="basket-row"><span>VMBO-TL</span><span>Floracollege · 2008 – 2013</span></div>
         </div>
 
         <div class="basket-section">
-            <h3>Skills</h3>
+            <h3 data-lang-nl="Vaardigheden" data-lang-en="Skills">Vaardigheden</h3>
             <div class="basket-chips">
                 <span class="basket-chip">CAD/CAM</span>
                 <span class="basket-chip">Autodesk Inventor</span>
-                <span class="basket-chip">Precision Machining</span>
+                <span class="basket-chip" data-lang-nl="Precisiebewerking" data-lang-en="Precision Machining">Precisiebewerking</span>
                 <span class="basket-chip">CNC</span>
-                <span class="basket-chip">Mechatronics</span>
-                <span class="basket-chip">Technical Drawing</span>
+                <span class="basket-chip" data-lang-nl="Mechatronica" data-lang-en="Mechatronics">Mechatronica</span>
+                <span class="basket-chip" data-lang-nl="Technisch tekenen" data-lang-en="Technical Drawing">Technisch tekenen</span>
                 <span class="basket-chip">MS Office</span>
                 <span class="basket-chip">Cleanroom (VCCN CGC)</span>
                 <span class="basket-chip">VCA BASIS</span>
@@ -1229,17 +1341,17 @@
         </div>
 
         <div class="basket-section">
-            <h3>Languages</h3>
+            <h3 data-lang-nl="Talen" data-lang-en="Languages">Talen</h3>
             <div class="basket-chips">
-                <span class="basket-chip">Dutch — Native</span>
-                <span class="basket-chip">English — Proficient</span>
-                <span class="basket-chip">German — Basic</span>
+                <span class="basket-chip" data-lang-nl="Nederlands — Moedertaal" data-lang-en="Dutch — Native">Nederlands — Moedertaal</span>
+                <span class="basket-chip" data-lang-nl="Engels — Kundig" data-lang-en="English — Proficient">Engels — Kundig</span>
+                <span class="basket-chip" data-lang-nl="Duits — Beginner" data-lang-en="German — Basic">Duits — Beginner</span>
             </div>
         </div>
 
         <div class="basket-cta">
-            <a href="mailto:borisvoll@hotmail.com" class="btn btn-primary" style="font-size:.85rem;padding:10px 28px;">Get in Touch</a>
-            <a href="https://www.linkedin.com/in/boris-jan-vollebregt-955b98111/" target="_blank" class="btn btn-ghost" style="font-size:.85rem;padding:10px 28px;">LinkedIn</a>
+            <a href="mailto:borisvoll@hotmail.com" class="btn btn-primary basket-cta-btn" data-lang-nl="Neem contact op" data-lang-en="Get in Touch">Neem contact op</a>
+            <a href="https://www.linkedin.com/in/boris-jan-vollebregt-955b98111/" target="_blank" class="btn btn-ghost basket-cta-btn">LinkedIn</a>
         </div>
     </div>
 </div>
