@@ -1117,6 +1117,77 @@
 
 <footer>&copy; 2026 Boris Jan Vollebregt — Den Haag</footer>
 
+<!-- BASKET MODAL -->
+<div class="basket-overlay" id="basketOverlay" role="dialog" aria-label="CV overzicht">
+    <div class="basket-card">
+        <button class="basket-close" id="basketClose" aria-label="Sluit overzicht">&times;</button>
+        <div class="basket-header">
+            <img src="images/portrait.jpg" alt="Boris Jan Vollebregt">
+            <div class="basket-profile-text">
+                <h3>Boris Jan Vollebregt</h3>
+                <p>Student Research Instrumentmaker</p>
+            </div>
+        </div>
+
+        <div class="basket-lang-toggle">
+            <button class="basket-lang-btn active" data-lang="nl">Nederlands</button>
+            <button class="basket-lang-btn" data-lang="en">English</button>
+        </div>
+
+        <div class="basket-section">
+            <h3 data-lang-nl="Profiel" data-lang-en="Profile">Profiel</h3>
+            <p class="basket-profile-desc" data-lang-nl="Gemotiveerde student aan de Leidse instrumentmakers School (LiS) met praktijkervaring in precisiebewerking, CAD/CAM, mechatronica en cleanroomtechnologie. Beschikbaar voor stages en opdrachten." data-lang-en="Motivated student at the Leidse instrumentmakers School (LiS) with hands-on experience in precision machining, CAD/CAM, mechatronics, and cleanroom technology. Available for internships and assignments.">Gemotiveerde student aan de Leidse instrumentmakers School (LiS) met praktijkervaring in precisiebewerking, CAD/CAM, mechatronica en cleanroomtechnologie. Beschikbaar voor stages en opdrachten.</p>
+        </div>
+
+        <div class="basket-section">
+            <h3 data-lang-nl="Werkervaring" data-lang-en="Experience">Werkervaring</h3>
+            <div class="basket-row"><span data-lang-nl="Researchinstrumentmaker (i.o.)" data-lang-en="Student Research Instrumentmaker">Researchinstrumentmaker (i.o.)</span><span>LiS · 2024 – 2028</span></div>
+            <div class="basket-row"><span data-lang-nl="Stage — ESERO CanSat" data-lang-en="Intern — ESERO CanSat">Stage — ESERO CanSat</span><span>2025 – 2026</span></div>
+            <div class="basket-row"><span data-lang-nl="Technische dienst veldwerk" data-lang-en="Field Engineering Technician">Technische dienst veldwerk</span><span>Soil Select · 2020 – 2021</span></div>
+            <div class="basket-row"><span data-lang-nl="Manager lunchkeuken" data-lang-en="Kitchen Manager">Manager lunchkeuken</span><span>Harvest House · 2015 – 2020</span></div>
+            <div class="basket-row"><span data-lang-nl="Medewerker verkoopklaar" data-lang-en="Retail Associate">Medewerker verkoopklaar</span><span>AH Koornneef · 2010 – 2014</span></div>
+        </div>
+
+        <div class="basket-section">
+            <h3 data-lang-nl="Opleiding" data-lang-en="Education">Opleiding</h3>
+            <div class="basket-row"><span data-lang-nl="Researchinstrumentmaker" data-lang-en="Research Instrumentmaker">Researchinstrumentmaker</span><span>LiS · 2024 – 2028</span></div>
+            <div class="basket-row"><span data-lang-nl="HBO Wiskunde" data-lang-en="HBO Mathematics">HBO Wiskunde</span><span>LiS · 2026</span></div>
+            <div class="basket-row"><span data-lang-nl="Zelfstandig ondernemer food (MBO 4)" data-lang-en="Food Entrepreneur (MBO 4)">Zelfstandig ondernemer food (MBO 4)</span><span>SVO · 2021 – 2024</span></div>
+            <div class="basket-row"><span data-lang-nl="Industrieel product ontwerpen (MBO 4)" data-lang-en="Industrial Product Design (MBO 4)">Industrieel product ontwerpen (MBO 4)</span><span>De Tinwerf · 2013 – 2014</span></div>
+            <div class="basket-row"><span>VMBO-TL</span><span>Floracollege · 2008 – 2013</span></div>
+        </div>
+
+        <div class="basket-section">
+            <h3 data-lang-nl="Vaardigheden" data-lang-en="Skills">Vaardigheden</h3>
+            <div class="basket-chips">
+                <span class="basket-chip">CAD/CAM</span>
+                <span class="basket-chip">Autodesk Inventor</span>
+                <span class="basket-chip" data-lang-nl="Precisiebewerking" data-lang-en="Precision Machining">Precisiebewerking</span>
+                <span class="basket-chip">CNC</span>
+                <span class="basket-chip" data-lang-nl="Mechatronica" data-lang-en="Mechatronics">Mechatronica</span>
+                <span class="basket-chip" data-lang-nl="Technisch tekenen" data-lang-en="Technical Drawing">Technisch tekenen</span>
+                <span class="basket-chip">MS Office</span>
+                <span class="basket-chip">Cleanroom (VCCN CGC)</span>
+                <span class="basket-chip">VCA BASIS</span>
+            </div>
+        </div>
+
+        <div class="basket-section">
+            <h3 data-lang-nl="Talen" data-lang-en="Languages">Talen</h3>
+            <div class="basket-chips">
+                <span class="basket-chip" data-lang-nl="Nederlands — Moedertaal" data-lang-en="Dutch — Native">Nederlands — Moedertaal</span>
+                <span class="basket-chip" data-lang-nl="Engels — Kundig" data-lang-en="English — Proficient">Engels — Kundig</span>
+                <span class="basket-chip" data-lang-nl="Duits — Beginner" data-lang-en="German — Basic">Duits — Beginner</span>
+            </div>
+        </div>
+
+        <div class="basket-cta">
+            <a href="mailto:borisvoll@hotmail.com" class="btn btn-primary basket-cta-btn" data-lang-nl="Neem contact op" data-lang-en="Get in Touch">Neem contact op</a>
+            <a href="https://www.linkedin.com/in/boris-jan-vollebregt-955b98111/" target="_blank" class="btn btn-ghost basket-cta-btn">LinkedIn</a>
+        </div>
+    </div>
+</div>
+
 <script>
     // === INTERSECTION OBSERVER ===
     const obs = new IntersectionObserver((entries) => {
@@ -1284,77 +1355,6 @@
     if (savedBg) applyBg(savedBg);
     if (savedLang) applyBasketLang(savedLang);
 </script>
-
-<!-- BASKET MODAL -->
-<div class="basket-overlay" id="basketOverlay" role="dialog" aria-label="CV overzicht">
-    <div class="basket-card">
-        <button class="basket-close" id="basketClose" aria-label="Sluit overzicht">&times;</button>
-        <div class="basket-header">
-            <img src="images/portrait.jpg" alt="Boris Jan Vollebregt">
-            <div class="basket-profile-text">
-                <h3>Boris Jan Vollebregt</h3>
-                <p>Student Research Instrumentmaker</p>
-            </div>
-        </div>
-
-        <div class="basket-lang-toggle">
-            <button class="basket-lang-btn active" data-lang="nl">Nederlands</button>
-            <button class="basket-lang-btn" data-lang="en">English</button>
-        </div>
-
-        <div class="basket-section">
-            <h3 data-lang-nl="Profiel" data-lang-en="Profile">Profiel</h3>
-            <p class="basket-profile-desc" data-lang-nl="Gemotiveerde student aan de Leidse instrumentmakers School (LiS) met praktijkervaring in precisiebewerking, CAD/CAM, mechatronica en cleanroomtechnologie. Beschikbaar voor stages en opdrachten." data-lang-en="Motivated student at the Leidse instrumentmakers School (LiS) with hands-on experience in precision machining, CAD/CAM, mechatronics, and cleanroom technology. Available for internships and assignments.">Gemotiveerde student aan de Leidse instrumentmakers School (LiS) met praktijkervaring in precisiebewerking, CAD/CAM, mechatronica en cleanroomtechnologie. Beschikbaar voor stages en opdrachten.</p>
-        </div>
-
-        <div class="basket-section">
-            <h3 data-lang-nl="Werkervaring" data-lang-en="Experience">Werkervaring</h3>
-            <div class="basket-row"><span data-lang-nl="Researchinstrumentmaker (i.o.)" data-lang-en="Student Research Instrumentmaker">Researchinstrumentmaker (i.o.)</span><span>LiS · 2024 – 2028</span></div>
-            <div class="basket-row"><span data-lang-nl="Stage — ESERO CanSat" data-lang-en="Intern — ESERO CanSat">Stage — ESERO CanSat</span><span>2025 – 2026</span></div>
-            <div class="basket-row"><span data-lang-nl="Technische dienst veldwerk" data-lang-en="Field Engineering Technician">Technische dienst veldwerk</span><span>Soil Select · 2020 – 2021</span></div>
-            <div class="basket-row"><span data-lang-nl="Manager lunchkeuken" data-lang-en="Kitchen Manager">Manager lunchkeuken</span><span>Harvest House · 2015 – 2020</span></div>
-            <div class="basket-row"><span data-lang-nl="Medewerker verkoopklaar" data-lang-en="Retail Associate">Medewerker verkoopklaar</span><span>AH Koornneef · 2010 – 2014</span></div>
-        </div>
-
-        <div class="basket-section">
-            <h3 data-lang-nl="Opleiding" data-lang-en="Education">Opleiding</h3>
-            <div class="basket-row"><span data-lang-nl="Researchinstrumentmaker" data-lang-en="Research Instrumentmaker">Researchinstrumentmaker</span><span>LiS · 2024 – 2028</span></div>
-            <div class="basket-row"><span data-lang-nl="HBO Wiskunde" data-lang-en="HBO Mathematics">HBO Wiskunde</span><span>LiS · 2026</span></div>
-            <div class="basket-row"><span data-lang-nl="Zelfstandig ondernemer food (MBO 4)" data-lang-en="Food Entrepreneur (MBO 4)">Zelfstandig ondernemer food (MBO 4)</span><span>SVO · 2021 – 2024</span></div>
-            <div class="basket-row"><span data-lang-nl="Industrieel product ontwerpen (MBO 4)" data-lang-en="Industrial Product Design (MBO 4)">Industrieel product ontwerpen (MBO 4)</span><span>De Tinwerf · 2013 – 2014</span></div>
-            <div class="basket-row"><span>VMBO-TL</span><span>Floracollege · 2008 – 2013</span></div>
-        </div>
-
-        <div class="basket-section">
-            <h3 data-lang-nl="Vaardigheden" data-lang-en="Skills">Vaardigheden</h3>
-            <div class="basket-chips">
-                <span class="basket-chip">CAD/CAM</span>
-                <span class="basket-chip">Autodesk Inventor</span>
-                <span class="basket-chip" data-lang-nl="Precisiebewerking" data-lang-en="Precision Machining">Precisiebewerking</span>
-                <span class="basket-chip">CNC</span>
-                <span class="basket-chip" data-lang-nl="Mechatronica" data-lang-en="Mechatronics">Mechatronica</span>
-                <span class="basket-chip" data-lang-nl="Technisch tekenen" data-lang-en="Technical Drawing">Technisch tekenen</span>
-                <span class="basket-chip">MS Office</span>
-                <span class="basket-chip">Cleanroom (VCCN CGC)</span>
-                <span class="basket-chip">VCA BASIS</span>
-            </div>
-        </div>
-
-        <div class="basket-section">
-            <h3 data-lang-nl="Talen" data-lang-en="Languages">Talen</h3>
-            <div class="basket-chips">
-                <span class="basket-chip" data-lang-nl="Nederlands — Moedertaal" data-lang-en="Dutch — Native">Nederlands — Moedertaal</span>
-                <span class="basket-chip" data-lang-nl="Engels — Kundig" data-lang-en="English — Proficient">Engels — Kundig</span>
-                <span class="basket-chip" data-lang-nl="Duits — Beginner" data-lang-en="German — Basic">Duits — Beginner</span>
-            </div>
-        </div>
-
-        <div class="basket-cta">
-            <a href="mailto:borisvoll@hotmail.com" class="btn btn-primary basket-cta-btn" data-lang-nl="Neem contact op" data-lang-en="Get in Touch">Neem contact op</a>
-            <a href="https://www.linkedin.com/in/boris-jan-vollebregt-955b98111/" target="_blank" class="btn btn-ghost basket-cta-btn">LinkedIn</a>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>
