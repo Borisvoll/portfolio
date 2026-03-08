@@ -1132,8 +1132,8 @@
     };
 
     function applyTheme(name) {
+        if (!Object.hasOwn(themes, name)) return;
         const t = themes[name];
-        if (!t) return;
         const r = document.documentElement.style;
         r.setProperty('--accent-1', t.a1);
         r.setProperty('--accent-2', t.a2);
@@ -1157,7 +1157,9 @@
     });
 
     // Background toggle
+    const validBgModes = ['dark', 'light'];
     function applyBg(mode) {
+        if (!validBgModes.includes(mode)) return;
         document.body.classList.toggle('light-mode', mode === 'light');
         document.querySelectorAll('.bg-btn').forEach(b => b.classList.remove('active'));
         document.querySelector(`[data-bg="${mode}"]`)?.classList.add('active');
